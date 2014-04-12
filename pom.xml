@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.gnomesoft</groupId>
+    <packaging>war</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>webapps-simple-angularjs</name>
+    <artifactId>simple-angularjs-webapp</artifactId>
+    <description>webapps archetype for creating web application with AngularJS 1.2.x with ngResource.</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <angular.version>1.2.16</angular.version>
+        <bootstrap.version>3.1.1</bootstrap.version>
+<!--        <angular.sourceUrl>http://code.angularjs.org/${angular.version}</angular.sourceUrl>
+        <destDir>${project.build.directory}/angularjs/${angular.version}
+        </destDir>-->
+    </properties>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+
+        <!--<plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>wagon-maven-plugin</artifactId>
+                <version>1.0-beta-4</version>
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>download-single</goal>
+                        </goals>
+                        <configuration>
+                            <url>${angular.sourceUrl}</url>
+                            <fromFile>angular-${angular.version}.zip</fromFile>
+                            <toFile>${project.build.directory}/${project.artifactId}.zip</toFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <echo message="unzip archive"/>
+                                <unzip src="${project.build.directory}/${project.artifactId}.zip"
+                                       dest="${project.build.directory}"/>
+                                <echo message="moving resources"/>
+                                <move todir="${destDir}">
+                                    <fileset dir="${project.build.directory}/angular-${angular.version}"
+                                             excludes="docs/"/>
+                                </move>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>-->
+
+    </build>
+
+   <dependencies>
+       <dependency>
+           <groupId>org.webjars</groupId>
+           <artifactId>angularjs</artifactId>
+           <version>${angular.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.webjars</groupId>
+           <artifactId>bootstrap</artifactId>
+           <version>${bootstrap.version}</version>
+       </dependency>
+   </dependencies>
+
+</project>
