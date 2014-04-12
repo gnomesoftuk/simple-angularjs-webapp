@@ -13,59 +13,25 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <angular.version>1.2.16</angular.version>
         <bootstrap.version>3.1.1</bootstrap.version>
-<!--        <angular.sourceUrl>http://code.angularjs.org/${angular.version}</angular.sourceUrl>
-        <destDir>${project.build.directory}/angularjs/${angular.version}
-        </destDir>-->
     </properties>
 
     <build>
         <finalName>${project.artifactId}</finalName>
-
-        <!--<plugins>
+        <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>wagon-maven-plugin</artifactId>
-                <version>1.0-beta-4</version>
-                <executions>
-                    <execution>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>download-single</goal>
-                        </goals>
-                        <configuration>
-                            <url>${angular.sourceUrl}</url>
-                            <fromFile>angular-${angular.version}.zip</fromFile>
-                            <toFile>${project.build.directory}/${project.artifactId}.zip</toFile>
-                        </configuration>
-                    </execution>
-                </executions>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.1.0.M0</version>
+                <configuration>
+                    <reload>automatic</reload>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <webApp>
+                        <contextPath>/${project.build.finalName}</contextPath>
+                    </webApp>
+                </configuration>
             </plugin>
+        </plugins>
 
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.7</version>
-                <executions>
-                    <execution>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-                                <echo message="unzip archive"/>
-                                <unzip src="${project.build.directory}/${project.artifactId}.zip"
-                                       dest="${project.build.directory}"/>
-                                <echo message="moving resources"/>
-                                <move todir="${destDir}">
-                                    <fileset dir="${project.build.directory}/angular-${angular.version}"
-                                             excludes="docs/"/>
-                                </move>
-                            </target>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>-->
 
     </build>
 
