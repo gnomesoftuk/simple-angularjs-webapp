@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+	<parent>
+        <groupId>com.gnomesoft</groupId>
+        <artifactId>angularjs-webapp-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<packaging>jar</packaging>
+    <name>angular js webapp integration tests</name>
+    <artifactId>angularjs-integration</artifactId>
+    <description>webapps archetype for creating web application with AngularJS 1.2.x with ngResource.</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <angular.version>1.2.16</angular.version>
+        <jquery.version>1.9.0</jquery.version>
+        <bootstrap.version>3.1.1</bootstrap.version>
+        <jasmine.version>1.3.1</jasmine.version>
+    </properties>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-maven-plugin</artifactId>
+                    <version>9.1.0.M0</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.github.searls</groupId>
+                    <artifactId>jasmine-maven-plugin</artifactId>
+                    <version>1.3.1.5-SNAPSHOT</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <configuration>
+                    <reload>automatic</reload>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <webApp>
+                        <contextPath>/${project.build.finalName}</contextPath>
+                    </webApp>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!-- TODO: currently broken as loading web jars from jasmine is not supported -->
+                <groupId>com.github.searls</groupId>
+                <artifactId>jasmine-maven-plugin</artifactId>
+                <configuration>
+                    <jsSrcDir>src/main/webapp/js</jsSrcDir>
+                    <autoRefreshInterval>10</autoRefreshInterval>
+                    <preloadSources>
+                        <source>classpath/META-INF/resources/webjars/jquery/${jquery.version}/jquery.min.js</source>
+                        <source>classpath/META-INF/resources/webjars/angularjs/${angular.version}/angular.min.js</source>
+                        <source>classpath/META-INF/resources/webjars/angularjs/${angular.version}/angular-mocks.js</source>
+                        <!-- TODO: add more sources as they are needed -->
+                        <!-- TODO2: modify jasmine plugin to be able to process wildcards
+                        ie classpath/META-INF/resources/webjars/angularjs/${angular.version}/angular-*
+                        or even better classpath/META-INF/resources/webjars/
+                        or even better than that just a classpath scan for any .js files inside classpath:/META-INF/resources
+                        -->
+                    </preloadSources>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                        <version>1.7.5</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>ch.qos.logback</groupId>
+                        <artifactId>logback-classic</artifactId>
+                        <version>0.9.24</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+        </plugins>
+    </build>
+
+   <dependencies>
+       <dependency>
+           <groupId>org.webjars</groupId>
+           <artifactId>angularjs</artifactId>
+           <version>${angular.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.webjars</groupId>
+           <artifactId>jquery</artifactId>
+           <version>${jquery.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.webjars</groupId>
+           <artifactId>bootstrap</artifactId>
+           <version>${bootstrap.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.webjars</groupId>
+           <artifactId>jasmine</artifactId>
+           <version>${jasmine.version}</version>
+           <scope>test</scope>
+       </dependency>
+   </dependencies>
+
+</project>
