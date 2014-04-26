@@ -51,12 +51,11 @@
                 </configuration>
             </plugin>
             <plugin>
-                <!-- TODO: currently broken as loading web jars from jasmine is not supported -->
                 <groupId>com.github.searls</groupId>
                 <artifactId>jasmine-maven-plugin</artifactId>
                 <configuration>
                     <jsSrcDir>src/main/webapp/js</jsSrcDir>
-                    <autoRefreshInterval>10</autoRefreshInterval>
+                    <autoRefreshInterval>6</autoRefreshInterval>
                     <preloadSources>
                         <source>classpath/META-INF/resources/webjars/jquery/${jquery.version}/jquery.min.js</source>
                         <source>classpath/META-INF/resources/webjars/angularjs/${angular.version}/angular.min.js</source>
