@@ -55,11 +55,13 @@
                 <artifactId>jasmine-maven-plugin</artifactId>
                 <configuration>
                     <jsSrcDir>src/main/webapp/js</jsSrcDir>
-                    <autoRefreshInterval>6</autoRefreshInterval>
+                    <autoRefreshInterval>0</autoRefreshInterval>
                     <preloadSources>
-                        <source>classpath/META-INF/resources/webjars/jquery/${jquery.version}/jquery.min.js</source>
-                        <source>classpath/META-INF/resources/webjars/angularjs/${angular.version}/angular.min.js</source>
+                        <source>classpath/META-INF/resources/webjars/jquery/${jquery.version}/jquery.js</source>
+                        <source>classpath/META-INF/resources/webjars/angularjs/${angular.version}/angular.js</source>
                         <source>classpath/META-INF/resources/webjars/angularjs/${angular.version}/angular-mocks.js</source>
+                        <source>classpath/META-INF/resources/webjars/angularjs/${angular.version}/angular-route.js</source>
+<!--                        <source>classpath/META-INF/resources/webjars/bootstrap/${bootstrap.version}/css/bootstrap.css</source>-->
                         <!-- TODO: add more sources as they are needed -->
                         <!-- TODO2: modify jasmine plugin to be able to process wildcards
                         ie classpath/META-INF/resources/webjars/angularjs/${angular.version}/angular-*
